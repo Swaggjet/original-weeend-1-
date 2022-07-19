@@ -1,6 +1,7 @@
 // console.log('client.js sourced');
 // call readyNow after document is ready
 $(document).ready(readyNow);
+
 /**
  * Runs when document is ready, prepares click handlers
  */
@@ -11,6 +12,15 @@ function readyNow() {
     $('body').on('click', '.delete-employee', deleteEmployee);
     $('#monthly-budget').on('click', updateMonthlyBudget);
 };
+
+function activation() {
+    console.log('In activation');
+    readyNow();
+
+}
+
+
+
 // array for employees
 const employees = [];
 let employeeFirstName;
@@ -28,6 +38,9 @@ let monthlyBudget = 20000;
  * @returns An alert if conditions are met
  */
 function addEmployee(event) {
+    console.log(event, 'event');
+    event.preventDefault();
+
     // console.log('In addEmployee');
     employeeFirstName = $('#firstNameInput').val();
     // console.log(employeeFirstName);
@@ -49,8 +62,8 @@ function addEmployee(event) {
     };
     createEmployee(employeeFirstName, employeeLastName, employeeID, employeeTitle, employeeAnnualSalary);
     clearInputFields();
-    appendEmployeeTable();
-    updateTotalMonthly();
+    employeeTable();
+
 };
 /**
  * Takes employee input data, creates an object, pushes object to array
@@ -73,6 +86,7 @@ function createEmployee(firstName, lastName, ID, title, annualSalary) {
     employees.push(employee);
     // console.log(employees);
 };
+
 /**
  * Clears input fields
  */
@@ -95,6 +109,11 @@ function clearInputFields(){
         <td>$${employee.salary}</td>
         <td><button id= "deleteButton">Delete</button></td>
     </tr>`);
+
+    function deleteButton() {
+        console.log('In deleteButton');
+        $(this).closest('tr').remove();
+    }
     // console.log('In appendEmployeeTable');
 
     
