@@ -1,0 +1,13 @@
+body {
+    margin: 0;
+    background-color: #eee;
+}
+
+.header {
+    color: #eee;
+    background-color: darkcyan;
+    text-align: center;
+    padding: 1em;
+    margin: 0;
+}
+
