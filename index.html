@@ -11,4 +11,61 @@
 </head>
 
 <body>
-    
+    <h1 class="header">Salary Calculator</h1>
+    <form class="employee-form">
+        <h2 id="employeeForm-header">Add Employee</h2>
+            <input id="firstNameInput" type="text" placeholder="First Name">
+            <input id="lastNameInput" type="text" placeholder="Last Name">
+            <input id="idInput" type="number" placeholder="ID">
+            <input id="titleInput" type="text" placeholder="Title">
+            <input id="annualsalary" type="number" placeholder="Annual Salary">
+        <button id="employee-input" class="submit-button">Submit</button>
+    </form>
+    <br>
+    <br>
+    <div class="output-container">
+        <h2>Employees</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th class="salary-cell">Annual Salary</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id="employeeTable">
+                <tr>
+                    <td>John</td>
+                    <td>Doe</td>
+                    <td>1234</td>
+                    <td>Sample</td>
+                    <td class="salary-cell">$ 55700</td>
+                    <td class="deleteButton">
+                        <button class="delete-employee">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </tfoot>
+        </table>
+        <div>
+            <input id="monthlybudget-input" class="monthlybudget-input" type="text"
+                placeholder="Default Budget: 20000">
+            <button id="monthly-budget" class="totalmonthly-budget">Update Monthly Budget</button>
+        </div>
+        <h2 class="output-total-monthly">Total Monthly: $4641.66</h2>
+    </div>
+</body>
+
+</html>
