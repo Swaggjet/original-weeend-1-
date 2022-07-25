@@ -10,7 +10,7 @@ function readyNow() {
     // click handlers
     $('#employeeForm-header').on('click', addEmployee);
     $('body').on('click', '.delete-employee', deleteEmployee);
-    $('#monthly-budget').on('click', updateMonthlyBudget);
+   
 };
 
 function activation() {
@@ -23,12 +23,10 @@ function activation() {
 
 // array for employees
 const employees = [];
-let employeeFirstName;
-let employeeLastName;
-let employeeID;
-let employeeTitle;
-let employeeAnnualSalary;
-let monthlyBudget = 20000;
+
+
+
+
 /**
  * Gathers input data for employee object
  * Calls createEmployee with input data
@@ -38,33 +36,25 @@ let monthlyBudget = 20000;
  * @returns An alert if conditions are met
  */
 function addEmployee(event) {
-    console.log(event, 'event');
     event.preventDefault();
-
-    // console.log('In addEmployee');
-    employeeFirstName = $('#firstNameInput').val();
-    // console.log(employeeFirstName);
-    employeeLastName = $('#lastNameInput').val();
-    // console.log(employeeLastName);
-    employeeID = $('#idInput').val();
-    // console.log(employeeID);
-    employeeTitle = $('#titleInput').val();
-    // console.log(employeeTitle);
-    employeeAnnualSalary = $('annualSalary').val();
-    // console.log(employeeAnnualSalary);
+    employeeFirstName = $('#employeeFirstName').val();
+    employeeLastName = $('#employeeLastName').val();
+    employeeID = $('#employeeID').val();
+    employeeTitle = $('#employeeTitle').val();
+    employeeAnnualSalary = $('#employeeAnnualSalary').val();
     if (employeeFirstName === '' || employeeLastName === '' || employeeID === '' || employeeTitle === '' || employeeAnnualSalary === '') {
-        alert('Please fill out all employee fields!');
-        return;
-    };
-    if (isNaN(employeeAnnualSalary)) {
-        alert('Please enter only numbers for employee salary!');
-        return;
-    };
-    createEmployee(employeeFirstName, employeeLastName, employeeID, employeeTitle, employeeAnnualSalary);
-    clearInputFields();
-    employeeTable();
+        alert('Please fill out all fields');
+    } else {
+        createEmployee(employeeFirstName, employeeLastName, employeeID, employeeTitle, employeeAnnualSalary);
+        $('#employeeFirstName').val('');
+        $('#employeeLastName').val('');
+        $('#employeeID').val('');
+        $('#employeeTitle').val('');
+        $('#employeeAnnualSalary').val('');
+    }
+}
 
-};
+
 /**
  * Takes employee input data, creates an object, pushes object to array
  * @param {string} firstName - is for employee first name
@@ -78,13 +68,16 @@ function createEmployee(firstName, lastName, ID, title, annualSalary) {
     let employee = {
         firstName: firstName,
         lastName: lastName,
-        id: ID,
+        ID: ID,
         title: title,
-        salary: annualSalary,
+        annualSalary: annualSalary,
+        monthlySalary: annualSalary / 12,
+        totalCost: annualSalary / 12,
+        deleteButton: '<button class="delete-employee">Delete</button>'
     };
-    // console.log(employee);
     employees.push(employee);
-    // console.log(employees);
+    appendEmployee(employee);
+    updateTotalMonthlyCost();
 };
 
 /**
@@ -132,27 +125,16 @@ function clearInputFields(){
 /**
  * Removes employee from array when clicking the delete button
  * Updates total monthly and appends the table
+ * 
+ * 
  */
 
-    // console.log('In deleteEmployee');
-   
-    // console.log('This is the employee you clicked', employee);
-    // console.log('This is the array before removing', employees);
-   
-    // console.log('This is the array after removing', employees);
-    
-    // $(this).parent().parent().remove();
+function removeEmployee(event) {
+    console.log('In removeEmployee');
+    event.preventDefault();
+    let employee = $(this).closest('tr');
+    employee.remove();
+}
 
-/**
- * Removes employee from the array
- * @param {Object[]} array - Is for the employees array
- * @param {number} search - is for the index of the employee to remove
- */
 
-    // console.log('In removeFromArray');
-    
-
-/**
- * Updates the monthly budget
- * @returns an alert if conditions are met
  */
